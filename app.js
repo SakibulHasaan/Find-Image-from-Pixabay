@@ -17,7 +17,7 @@ document.getElementById("search").addEventListener("keypress", function (e) {
 // If this key doesn't work
 // Find the name in the url and go to their website
 // to create your own api key
-const KEY = "14033761-2a929b025887a2ff47db07c31";
+// const KEY = "14033761-2a929b025887a2ff47db07c31";
 
 // show images
 const showImages = (images) => {
@@ -34,8 +34,8 @@ const showImages = (images) => {
 };
 
 const getImages = (query) => {
-  const url = `https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`;
-  // console.log(url);
+  const url = `https://pixabay.com/api/?key=14033761-2a929b025887a2ff47db07c31&q=${query}&image_type=photo&pretty=true;`;
+  console.log(url);
   fetch(url)
     .then((response) => response.json())
     .then((data) => showImages(data.hits))
@@ -50,8 +50,15 @@ const selectItem = (event, img) => {
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
+    console.log("img", img);
   } else {
-    alert("Hey, Already added !");
+    // alert("Hey, Already added !");
+
+    const index = sliders.indexOf(img);
+    console.log('index :',index);
+    if (index > -1) {
+      sliders.splice(index, 1);
+    }
   }
 };
 var timer;
@@ -116,13 +123,13 @@ const changeSlide = (index) => {
   items[index].style.display = "block";
 };
 
-searchBtn.addEventListener('click',function () {
-    document.querySelector(".main").style.display = "none";
-    clearInterval(timer);
-    const search = document.getElementById("search");
-    getImages(search.value);
-    sliders.length = 0;
-  })
+searchBtn.addEventListener("click", function () {
+  document.querySelector(".main").style.display = "none";
+  clearInterval(timer);
+  const search = document.getElementById("search");
+  getImages(search.value);
+  sliders.length = 0;
+});
 
 sliderBtn.addEventListener("click", function () {
   createSlider();
