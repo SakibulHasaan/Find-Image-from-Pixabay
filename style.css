@@ -17,6 +17,9 @@
 .img-thumbnail {
   cursor: pointer;
 }
+#spinner{
+  text-align: center;
+}
 
 .added {
   border: 2px solid #1e1743;
