@@ -68,6 +68,11 @@ const createSlider = () => {
     alert("Select at least 2 image.");
     return;
   }
+  const duration = document.getElementById("duration").value || 1000;
+  if(duration<0){
+    alert("Please provide a positive value!")
+  }
+  else{
   // crate slider previous next area
   sliderContainer.innerHTML = "";
   const prevNext = document.createElement("div");
@@ -82,7 +87,6 @@ const createSlider = () => {
 
   // hide image aria
   imagesArea.style.display = "none";
-  const duration = document.getElementById("duration").value || 1000;
   sliders.forEach((slide) => {
     let item = document.createElement("div");
     item.className = "slider-item";
@@ -98,7 +102,9 @@ const createSlider = () => {
     changeSlide(slideIndex);
   }, duration);
 
-};
+
+  }
+}
 
 // change slider index
 const changeItem = (index) => {
